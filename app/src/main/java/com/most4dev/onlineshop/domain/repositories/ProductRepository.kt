@@ -4,6 +4,7 @@ import com.most4dev.onlineshop.domain.entities.BrandEntity
 import com.most4dev.onlineshop.domain.entities.ItemCategory
 import com.most4dev.onlineshop.domain.entities.ProductEntity
 import com.most4dev.onlineshop.domain.entities.SaleProductEntity
+import java.util.*
 
 interface ProductRepository {
 
@@ -17,6 +18,6 @@ interface ProductRepository {
 
     fun getBrands(): List<BrandEntity>
 
-    fun getProduct(id: Long): ProductEntity
+    fun getProduct(id: UUID): ProductEntity?
 
 }
