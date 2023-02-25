@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">OnlineShop</string>
+
+    <!--LIST CATEGORIES-->
+    <string name="phones">Phones</string>
+    <string name="headphones">Headphones</string>
+    <string name="games">Games</string>
+    <string name="cars">Cars</string>
+    <string name="furniture">Furniture</string>
+    <string name="kids">Kids</string>
 </resources>

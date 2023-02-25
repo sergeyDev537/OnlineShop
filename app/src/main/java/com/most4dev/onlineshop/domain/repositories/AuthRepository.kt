@@ -6,7 +6,7 @@ interface AuthRepository {
 
     suspend fun signIn(account: AccountEntity)
 
-    suspend fun login(account: AccountEntity)
+    suspend fun login(firstName: String, password: String): Boolean
 
     suspend fun logout(account: AccountEntity)
 
