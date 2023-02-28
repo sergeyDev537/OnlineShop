@@ -7,8 +7,8 @@ import com.most4dev.onlineshop.data.database.model.AccountDbModel
 @Dao
 interface AccountDao {
 
-    @Query("SELECT * FROM account LIMIT 1")
-    fun getAccount(): LiveData<AccountDbModel>
+    @Query("SELECT * FROM account")
+    suspend fun getAccount(): List<AccountDbModel>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun createAccount(accountDbModel: AccountDbModel)
@@ -18,5 +18,8 @@ interface AccountDao {
 
     @Delete
     suspend fun removeUser(accountDbModel: AccountDbModel)
+
+    @Query("SELECT * FROM account WHERE email LIKE '%' || :email || '%'")
+    fun checkEmail(email: String): LiveData<AccountDbModel>
 
 }

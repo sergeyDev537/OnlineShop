@@ -45,4 +45,8 @@ val domainModule = module {
         UploadPhotoUseCase(profileRepository = get())
     }
 
+    factory {
+        GetAccountsUseCase(authRepository = get())
+    }
+
 }
