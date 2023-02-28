@@ -8,4 +8,29 @@
     <string name="cars">Cars</string>
     <string name="furniture">Furniture</string>
     <string name="kids">Kids</string>
+
+    <!--AUTHORIZATION-->
+    <string name="sign_in">Sign in</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="email">Email</string>
+    <string name="already_account">Already have an account?</string>
+    <string name="log_in">Log in</string>
+    <string name="sign_in_google">Sign in with Google</string>
+    <string name="sign_in_apple">Sign in with Apple</string>
+    <string name="welcome_back">Welcome back</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="user_already_exists">This user already exists</string>
+    <string name="first_name_empty">First name is empty</string>
+    <string name="last_name_empty">Last name is empty</string>
+    <string name="email_not_valid">Email is not valid</string>
+    <string name="data_not_valid">Data is not valid</string>
+    <string name="name_email_not_valid">First name or email not valid</string>
+
+    <!--CONTENT DESCRIPTION-->
+    <string name="cd_sign_in_google">Icon sign in with google</string>
+    <string name="cd_sign_in_apple">Icon sign in with apple</string>
+    <string name="password_not_valid">Password not valid</string>
+
 </resources>

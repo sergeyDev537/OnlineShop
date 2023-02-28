@@ -7,25 +7,23 @@ class AccountMapper {
 
     fun mapEntityToDbModel(accountEntity: AccountEntity): AccountDbModel{
         return AccountDbModel(
-            accountEntity.id,
-            accountEntity.firstName,
-            accountEntity.lastName,
-            accountEntity.email,
-            accountEntity.password,
-            accountEntity.photoProfile,
-            accountEntity.balance,
+            firstName = accountEntity.firstName,
+            lastName = accountEntity.lastName,
+            email = accountEntity.email,
+            password = accountEntity.password,
+            photoProfile = accountEntity.photoProfile,
+            balance = accountEntity.balance,
         )
     }
 
     fun mapDbModelToEntity(accountDbModel: AccountDbModel): AccountEntity{
         return AccountEntity(
-            accountDbModel.id,
-            accountDbModel.firstName,
-            accountDbModel.lastName,
-            accountDbModel.email,
-            accountDbModel.password,
-            accountDbModel.photoProfile,
-            accountDbModel.balance,
+            firstName = accountDbModel.firstName,
+            lastName = accountDbModel.lastName,
+            email = accountDbModel.email,
+            password = accountDbModel.password,
+            photoProfile = accountDbModel.photoProfile,
+            balance = accountDbModel.balance,
         )
     }
 
