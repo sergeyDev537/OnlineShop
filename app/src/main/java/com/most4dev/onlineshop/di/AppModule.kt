@@ -5,6 +5,8 @@ import com.most4dev.onlineshop.presentation.home.fragments.cart.CartViewModel
 import com.most4dev.onlineshop.presentation.home.fragments.chat.ChatViewModel
 import com.most4dev.onlineshop.presentation.home.fragments.favorite.FavoriteViewModel
 import com.most4dev.onlineshop.presentation.home.fragments.home.HomeViewModel
+import com.most4dev.onlineshop.presentation.home.fragments.itemProduct.ItemProductViewModel
+import com.most4dev.onlineshop.presentation.home.fragments.order.OrderViewModel
 import com.most4dev.onlineshop.presentation.home.fragments.profile.ProfileViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -43,6 +45,16 @@ val appModule = module {
 
     viewModel<ProfileViewModel>{
         ProfileViewModel()
+    }
+
+    viewModel<ItemProductViewModel>{
+        ItemProductViewModel(
+            getProductUseCase = get()
+        )
+    }
+
+    viewModel<OrderViewModel>{
+        OrderViewModel()
     }
 
 }

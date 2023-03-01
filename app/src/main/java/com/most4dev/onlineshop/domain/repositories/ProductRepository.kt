@@ -1,9 +1,6 @@
 package com.most4dev.onlineshop.domain.repositories
 
-import com.most4dev.onlineshop.domain.entities.BrandEntity
-import com.most4dev.onlineshop.domain.entities.ItemCategory
-import com.most4dev.onlineshop.domain.entities.ProductEntity
-import com.most4dev.onlineshop.domain.entities.SaleProductEntity
+import com.most4dev.onlineshop.domain.entities.*
 import java.util.*
 
 interface ProductRepository {
@@ -18,6 +15,6 @@ interface ProductRepository {
 
     fun getBrands(): List<BrandEntity>
 
-    fun getProduct(id: UUID): ProductEntity?
+    suspend fun getProduct(): ItemProductEntity?
 
 }

@@ -1,12 +1,13 @@
 package com.most4dev.onlineshop.utils
 
+import android.app.Activity
+import android.content.Intent
 import android.content.res.Resources
 import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.snackbar.Snackbar
-import com.most4dev.onlineshop.R
 
 fun View.showSnackbar(message: String){
     Snackbar.make(this, message, Snackbar.LENGTH_LONG).show()
@@ -20,4 +21,15 @@ fun BottomNavigationView.cornersBottomNavigationView(resources: Resources, idRad
             .setTopRightCorner(CornerFamily.ROUNDED, radius)
             .setTopLeftCorner(CornerFamily.ROUNDED, radius)
             .build()
+}
+
+fun Activity.shareProduct(page: String){
+    val sendIntent: Intent = Intent().apply {
+        action = Intent.ACTION_SEND
+        putExtra(Intent.EXTRA_TEXT, page)
+        type = "text/plain"
+    }
+
+    val shareIntent = Intent.createChooser(sendIntent, null)
+    startActivity(shareIntent)
 }
