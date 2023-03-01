@@ -69,8 +69,8 @@ class ProductRepositoryImpl(
 
     override fun getBrands(): List<BrandEntity> {
         val listBrands = arrayListOf<BrandEntity>()
-        listBrands.add(BrandEntity("https://www.bitrefill.com/content/cn/b_rgb%3AFFFFFF%2Cc_pad%2Ch_600%2Cw_800/v1553032023/adidas.jpg"))
-        listBrands.add(BrandEntity("https://c.static-nike.com/a/images/w_1920,c_limit/bzl2wmsfh7kgdkufrrjq/image.jpg"))
+        listBrands.add(BrandEntity("https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Adidas_Logo.svg/2560px-Adidas_Logo.svg.png"))
+        listBrands.add(BrandEntity("https://static.vecteezy.com/system/resources/previews/010/994/232/original/nike-logo-black-clothes-design-icon-abstract-football-illustration-with-white-background-free-vector.jpg"))
         listBrands.add(BrandEntity("https://preview.thenewsmarket.com/Previews/RBOK/StillAssets/1920x1080/551064.png"))
         return listBrands
     }

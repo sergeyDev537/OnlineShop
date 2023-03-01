@@ -1,7 +1,6 @@
 package com.most4dev.onlineshop.presentation.auth
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputLayout
 import com.most4dev.onlineshop.R
 import com.most4dev.onlineshop.databinding.FragmentLoginBinding
+import com.most4dev.onlineshop.presentation.MainActivity
 import com.most4dev.onlineshop.utils.showSnackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -40,8 +40,8 @@ class LoginFragment : Fragment() {
                 binding.root.showSnackbar(requireContext().getString(R.string.name_email_not_valid))
             }
             else{
-                //TODO open page1
-                Log.d("TAGING", "OPEN PAGE 1")
+                startActivity(MainActivity.newInstance(requireActivity()))
+                requireActivity().finish()
             }
         }
         authViewModel.validDataLogIn.observe(viewLifecycleOwner){
@@ -71,6 +71,8 @@ class LoginFragment : Fragment() {
 
     private fun setClickListeners() {
         binding.buttonLogin.setOnClickListener {
+            binding.buttonLogin.isEnabled = false
+            binding.progressLogin.visibility = View.VISIBLE
             authViewModel.validateLogIn(
                 binding.etFirstName.text.toString(),
                 binding.etPassword.text.toString()

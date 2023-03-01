@@ -27,10 +27,58 @@
     <string name="email_not_valid">Email is not valid</string>
     <string name="data_not_valid">Data is not valid</string>
     <string name="name_email_not_valid">First name or email not valid</string>
+    <string name="password_not_valid">Password not valid</string>
 
     <!--CONTENT DESCRIPTION-->
     <string name="cd_sign_in_google">Icon sign in with google</string>
     <string name="cd_sign_in_apple">Icon sign in with apple</string>
-    <string name="password_not_valid">Password not valid</string>
+    <string name="cd_item_category">Item category</string>
+    <string name="cd_add_item">Add item</string>
+    <string name="cd_add_product">Add product</string>
+    <string name="cd_image_product">Image product</string>
+    <string name="cd_image_brands">Image brands</string>
+
+
+    <!--NAVIGATION DRAWER-->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <!--TEXT BOTTOM FRAGMENT-->
+    <string name="fragment_favorite">This is favorite fragment</string>
+    <string name="fragment_cart">This is cart fragment</string>
+    <string name="fragment_chat">This is chat fragment</string>
+    <string name="title_activity_bottom">BottomActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <!--ITEMS BOTTOM MENU-->
+    <string name="home">Trade by bata</string>
+    <string name="trade_by">Trade by</string>
+    <string name="bata">bata</string>
+    <string name="favorite">Favorite</string>
+    <string name="cart">Cart</string>
+    <string name="chat">Chat</string>
+    <string name="profile">Profile</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="title_activity_main3">MainActivity3</string>
+    <string name="latest">Latest</string>
+    <string name="flash_sale">Flash sale</string>
+    <string name="brands">Brands</string>
+    <string name="add_favorite">Add favorite</string>
+
+    <!--HOME-->
+    <string name="label_price_latest">$ %1$s</string>
+    <string name="label_discount">%1$s%% off</string>
+    <string name="hint_search">What are you looking for?</string>
+    <string name="search">Search</string>
+
 
 </resources>

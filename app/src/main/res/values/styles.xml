@@ -16,4 +16,10 @@
         <item name="boxStrokeWidthFocused">0dp</item>
     </style>
 
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:width">48dp</item>
+        <item name="android:height">48dp</item>
+        <item name="android:color">@color/back_search</item>
+    </style>
+
 </resources>

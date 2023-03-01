@@ -21,11 +21,7 @@ class ProductMapper {
             category = latestProductDto.category,
             name = latestProductDto.name,
             price = latestProductDto.price.toDouble(),
-            image_urls = listOf(latestProductDto.image_url),
-            description = EMPTY_DESCRIPTION,
-            rating = EMPTY_RATING,
-            colors = listOf(),
-            favorite = false
+            image_urls = latestProductDto.image_url
         )
     }
 
@@ -50,11 +46,7 @@ class ProductMapper {
             category = saleProductEntity.category,
             name = saleProductEntity.name,
             price = saleProductEntity.price,
-            image_urls = listOf(saleProductEntity.image_url),
-            description = EMPTY_DESCRIPTION,
-            rating = EMPTY_RATING,
-            colors = listOf(),
-            favorite = false
+            image_urls = saleProductEntity.image_url
         )
     }
 
