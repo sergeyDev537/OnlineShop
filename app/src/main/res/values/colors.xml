@@ -9,4 +9,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="blue">#254FE6</color>
     <color name="blue_buttons">#4E55D7</color>
+    <color name="back_fragments">#F5F5F5</color>
+    <color name="back_category">#EEEFF4</color>
+    <color name="back_gray">#C4C4C4</color>
+    <color name="red">#F93A3A</color>
+    <color name="back_search">#DFDDDD</color>
+    <color name="back_gray_search">#5B5B5B</color>
 </resources>

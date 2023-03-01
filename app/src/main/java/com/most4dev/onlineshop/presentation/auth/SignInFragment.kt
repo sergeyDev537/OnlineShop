@@ -1,7 +1,6 @@
 package com.most4dev.onlineshop.presentation.auth
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +10,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.most4dev.onlineshop.R
 import com.most4dev.onlineshop.databinding.FragmentSignInBinding
 import com.most4dev.onlineshop.domain.entities.AccountEntity
+import com.most4dev.onlineshop.presentation.MainActivity
 import com.most4dev.onlineshop.utils.showSnackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -39,8 +39,8 @@ class SignInFragment : Fragment() {
 
     private fun setObserves() {
         authViewModel.signIn.observe(viewLifecycleOwner){
-            //TODO open page1
-            Log.d("TAGING", "OPEN PAGE 1")
+            startActivity(MainActivity.newInstance(requireActivity()))
+            requireActivity().finish()
         }
         authViewModel.signInError.observe(viewLifecycleOwner){
             binding.root.showSnackbar(it)
@@ -103,6 +103,14 @@ class SignInFragment : Fragment() {
             findNavController().navigate(R.id.action_signInFragment_to_loginFragment)
         }
         binding.buttonSignIn.setOnClickListener {
+            binding.buttonSignIn.isEnabled = false
+            binding.inputFirstName.isEnabled = false
+            binding.inputLastName.isEnabled = false
+            binding.inputEmail.isEnabled = false
+            binding.inputPassword.isEnabled = false
+            binding.llSignInGoogle.isEnabled = false
+            binding.llSignInApple.isEnabled = false
+            binding.progressSignIn.visibility = View.VISIBLE
             validateFields()
         }
     }
