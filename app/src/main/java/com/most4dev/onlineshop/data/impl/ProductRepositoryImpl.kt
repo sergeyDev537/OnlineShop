@@ -4,10 +4,7 @@ import android.content.Context
 import com.most4dev.onlineshop.R
 import com.most4dev.onlineshop.data.mappers.ProductMapper
 import com.most4dev.onlineshop.data.network.api.ProductsApi
-import com.most4dev.onlineshop.domain.entities.BrandEntity
-import com.most4dev.onlineshop.domain.entities.ItemCategory
-import com.most4dev.onlineshop.domain.entities.ProductEntity
-import com.most4dev.onlineshop.domain.entities.SaleProductEntity
+import com.most4dev.onlineshop.domain.entities.*
 import com.most4dev.onlineshop.domain.repositories.ProductRepository
 import java.util.*
 
@@ -75,7 +72,10 @@ class ProductRepositoryImpl(
         return listBrands
     }
 
-    override fun getProduct(id: UUID): ProductEntity? {
-        return listAllProducts.find { it.id == id }
+    override suspend fun getProduct(): ItemProductEntity? {
+        val itemProduct = productsApi.getItemProduct().body()?.let {
+            productMapper.mapItemDtoToEntity(it)
+        }
+        return itemProduct
     }
 }

@@ -1,9 +1,7 @@
 package com.most4dev.onlineshop.data.mappers
 
-import com.most4dev.onlineshop.data.network.models.FlashSaleDto
-import com.most4dev.onlineshop.data.network.models.FlashSaleListDto
-import com.most4dev.onlineshop.data.network.models.LatestProductDto
-import com.most4dev.onlineshop.data.network.models.LatestProductListDto
+import com.most4dev.onlineshop.data.network.models.*
+import com.most4dev.onlineshop.domain.entities.ItemProductEntity
 import com.most4dev.onlineshop.domain.entities.ProductEntity
 import com.most4dev.onlineshop.domain.entities.SaleProductEntity
 import java.util.*
@@ -47,6 +45,18 @@ class ProductMapper {
             name = saleProductEntity.name,
             price = saleProductEntity.price,
             image_urls = saleProductEntity.image_url
+        )
+    }
+
+    fun mapItemDtoToEntity(itemProductDto: ItemProductDto): ItemProductEntity {
+        return ItemProductEntity(
+            name = itemProductDto.name,
+            description = itemProductDto.description,
+            rating = itemProductDto.rating,
+            number_of_reviews = itemProductDto.number_of_reviews,
+            price = itemProductDto.price,
+            colors = itemProductDto.colors,
+            image_urls = itemProductDto.image_urls
         )
     }
 

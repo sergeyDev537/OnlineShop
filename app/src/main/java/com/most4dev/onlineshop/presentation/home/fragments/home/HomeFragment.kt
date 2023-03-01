@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.most4dev.onlineshop.R
 import com.most4dev.onlineshop.databinding.FragmentHomeBinding
 import com.most4dev.onlineshop.domain.entities.ProductEntity
 import com.most4dev.onlineshop.domain.entities.SaleProductEntity
@@ -70,7 +72,7 @@ class HomeFragment : Fragment() {
         }
 
         saleProductsAdapter.clickItemSaleProduct = {
-
+            findNavController().navigate(R.id.action_nav_bottom_home_to_itemProduct)
         }
 
         brandsAdapter.clickItemBrand = {

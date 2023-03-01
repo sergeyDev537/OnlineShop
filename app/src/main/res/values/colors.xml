@@ -15,4 +15,7 @@
     <color name="red">#F93A3A</color>
     <color name="back_search">#DFDDDD</color>
     <color name="back_gray_search">#5B5B5B</color>
+    <color name="back_like_share">#E5E9EF</color>
+    <color name="back_add_cart">#181726</color>
+    <color name="color_quantity">#808080</color>
 </resources>

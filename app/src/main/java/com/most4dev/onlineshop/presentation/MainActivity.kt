@@ -108,6 +108,10 @@ class MainActivity : AppCompatActivity() {
                 getString(R.string.profile) -> {
                     visibleIconProfile(false)
                 }
+                getString(R.string.about_product) -> {
+                    visibleIconProfile(false)
+                    binding.appBarMain.toolbar.visibility = View.GONE
+                }
             }
 
         }
@@ -115,11 +119,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun visibleIconProfile(visible: Boolean) {
         if (visible) {
+            binding.appBarMain.toolbar.visibility = View.VISIBLE
             binding.appBarMain.toolbarSearch.visibility = View.VISIBLE
             menuToolbar?.let {
                 it.findItem(R.id.menu_search).isVisible = true
             }
         } else {
+            binding.appBarMain.toolbar.visibility = View.VISIBLE
             binding.appBarMain.toolbarSearch.visibility = View.GONE
             menuToolbar?.let {
                 it.findItem(R.id.menu_search).isVisible = false
