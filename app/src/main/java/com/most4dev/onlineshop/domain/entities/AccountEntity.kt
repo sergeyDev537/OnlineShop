@@ -7,7 +7,7 @@ data class AccountEntity(
     val firstName: String,
     val lastName: String,
     val password: String,
-    val photoProfile: ByteArray,
+    var photoProfile: Bitmap,
     val balance: Int
 ) {
     override fun equals(other: Any?): Boolean {
@@ -20,7 +20,6 @@ data class AccountEntity(
         if (lastName != other.lastName) return false
         if (email != other.email) return false
         if (password != other.password) return false
-        if (!photoProfile.contentEquals(other.photoProfile)) return false
         if (balance != other.balance) return false
 
         return true
@@ -32,7 +31,7 @@ data class AccountEntity(
         result = 31 * result + lastName.hashCode()
         result = 31 * result + email.hashCode()
         result = 31 * result + password.hashCode()
-        result = 31 * result + photoProfile.contentHashCode()
+        result = 31 * result + photoProfile.hashCode()
         result = 31 * result + balance
         return result
     }

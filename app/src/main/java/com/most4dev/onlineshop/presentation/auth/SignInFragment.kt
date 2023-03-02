@@ -1,5 +1,6 @@
 package com.most4dev.onlineshop.presentation.auth
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -38,58 +39,56 @@ class SignInFragment : Fragment() {
     }
 
     private fun setObserves() {
-        authViewModel.signIn.observe(viewLifecycleOwner){
+        authViewModel.signIn.observe(viewLifecycleOwner) {
             startActivity(MainActivity.newInstance(requireActivity()))
             requireActivity().finish()
         }
-        authViewModel.signInError.observe(viewLifecycleOwner){
+        authViewModel.signInError.observe(viewLifecycleOwner) {
             binding.root.showSnackbar(it)
         }
-        authViewModel.validDataSignIn.observe(viewLifecycleOwner){
-            if (it){
+        authViewModel.validDataSignIn.observe(viewLifecycleOwner) {
+            if (it) {
                 authViewModel.signIn(
                     AccountEntity(
                         binding.etEmail.text.toString(),
                         binding.etFirstName.text.toString(),
                         binding.etLastName.text.toString(),
                         binding.etPassword.text.toString(),
-                        ByteArray(0),
-                    0
+                        EMPTY_BITMAP,
+                        DEFAULT_BALANCE
                     )
                 )
-            }
-            else{
+            } else {
                 binding.root.showSnackbar(requireContext().getString(R.string.data_not_valid))
             }
         }
-        authViewModel.firstNameError.observe(viewLifecycleOwner){
+        authViewModel.firstNameError.observe(viewLifecycleOwner) {
             setErrorTextInputLayout(binding.inputFirstName, it)
         }
 
-        authViewModel.lastNameError.observe(viewLifecycleOwner){
+        authViewModel.lastNameError.observe(viewLifecycleOwner) {
             setErrorTextInputLayout(binding.inputLastName, it)
         }
 
-        authViewModel.emailError.observe(viewLifecycleOwner){
+        authViewModel.emailError.observe(viewLifecycleOwner) {
             setErrorTextInputLayout(binding.inputEmail, it)
         }
 
-        authViewModel.passwordError.observe(viewLifecycleOwner){
+        authViewModel.passwordError.observe(viewLifecycleOwner) {
             setErrorTextInputLayout(binding.inputPassword, it)
         }
 
     }
 
-    private fun setErrorTextInputLayout(inputLayout: TextInputLayout, errorMessage: String){
-        if (errorMessage == AuthViewModel.EMPTY_STRING){
+    private fun setErrorTextInputLayout(inputLayout: TextInputLayout, errorMessage: String) {
+        if (errorMessage == AuthViewModel.EMPTY_STRING) {
             inputLayout.error = null
-        }
-        else{
+        } else {
             inputLayout.error = errorMessage
         }
     }
 
-    private fun validateFields(){
+    private fun validateFields() {
         authViewModel.validateSignIn(
             binding.etFirstName.text.toString(),
             binding.etLastName.text.toString(),
@@ -119,4 +118,12 @@ class SignInFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
+    companion object {
+
+        val EMPTY_BITMAP = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888)
+        const val DEFAULT_BALANCE = 1593
+
+    }
+
 }
