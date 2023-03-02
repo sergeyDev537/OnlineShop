@@ -1,12 +1,14 @@
 package com.most4dev.onlineshop.data.impl
 
+import android.app.SearchManager
 import android.content.Context
+import android.database.MatrixCursor
+import android.provider.BaseColumns
 import com.most4dev.onlineshop.R
 import com.most4dev.onlineshop.data.mappers.ProductMapper
 import com.most4dev.onlineshop.data.network.api.ProductsApi
 import com.most4dev.onlineshop.domain.entities.*
 import com.most4dev.onlineshop.domain.repositories.ProductRepository
-import java.util.*
 
 class ProductRepositoryImpl(
     private val context: Context,
@@ -16,8 +18,17 @@ class ProductRepositoryImpl(
 
     private val listAllProducts = arrayListOf<ProductEntity>()
 
-    override fun searchProduct(nameProduct: String): List<ProductEntity> {
-        TODO("Not yet implemented")
+    override suspend fun searchProduct(nameProduct: String): MatrixCursor {
+        val wordsEntity = productsApi.getSearchWords().body()?.let {
+            productMapper.mapSearchWordsDtoToEntity(it)
+        } ?: WordsEntity(listOf())
+        val cursor =
+            MatrixCursor(arrayOf(BaseColumns._ID, SearchManager.SUGGEST_COLUMN_TEXT_1))
+        wordsEntity.words.forEachIndexed { index, suggestion ->
+            if (suggestion.contains(nameProduct, true))
+                cursor.addRow(arrayOf(index, suggestion))
+        }
+        return cursor
     }
 
     override fun getCategoryProducts(): List<ItemCategory> {
