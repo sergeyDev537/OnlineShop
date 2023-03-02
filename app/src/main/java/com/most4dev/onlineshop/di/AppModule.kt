@@ -44,7 +44,12 @@ val appModule = module {
     }
 
     viewModel<ProfileViewModel>{
-        ProfileViewModel()
+        ProfileViewModel(
+            application = get(),
+            getAccountUseCase = get(),
+            uploadPhotoUseCase = get(),
+            logoutUseCase = get()
+        )
     }
 
     viewModel<ItemProductViewModel>{

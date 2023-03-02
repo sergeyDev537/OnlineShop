@@ -1,6 +1,5 @@
 package com.most4dev.onlineshop.di
 
-import android.media.Image
 import androidx.room.Room
 import com.most4dev.onlineshop.data.database.dao.AccountDao
 import com.most4dev.onlineshop.data.database.model.AppDatabase
@@ -50,6 +49,7 @@ val dataModule = module {
 
     single<AuthRepository> {
         AuthRepositoryImpl(
+            context = get(),
             accountDao = get(),
             accountMapper = get(),
         )
@@ -64,7 +64,10 @@ val dataModule = module {
     }
 
     single<ProfileRepository> {
-        ProfileRepositoryImpl()
+        ProfileRepositoryImpl(
+            accountDao = get(),
+            accountMapper = get()
+        )
     }
 
 }

@@ -37,6 +37,13 @@
     <string name="cd_add_product">Add product</string>
     <string name="cd_image_product">Image product</string>
     <string name="cd_image_brands">Image brands</string>
+    <string name="cd_trade_store">Trade store</string>
+    <string name="cd_payment_method">Payment method</string>
+    <string name="cd_balance">Balance</string>
+    <string name="cd_trade_history">Trade history</string>
+    <string name="cd_restore_purchase">Restore purchase</string>
+    <string name="cd_help">Help</string>
+    <string name="cd_log_out">Log out</string>
 
 
     <!--NAVIGATION DRAWER-->
@@ -98,5 +105,17 @@
 
     <!--ORDER-->
     <string name="order_fragment">Order fragment</string>
+
+    <!--PROFILE-->
+    <string name="change_photo">Change photo</string>
+    <string name="upload_item">Upload item</string>
+    <string name="trade_store">Trade store</string>
+    <string name="payment_method">Payment method</string>
+    <string name="balance">Balance</string>
+    <string name="trade_history">Trade history</string>
+    <string name="restore_purchase">Restore purchase</string>
+    <string name="help">Help</string>
+    <string name="log_out">Log out</string>
+    <string name="permission_denied">Permission denied</string>
 
 </resources>

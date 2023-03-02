@@ -1,6 +1,5 @@
 package com.most4dev.onlineshop.data.database.model
 
-import android.graphics.Bitmap
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -12,7 +11,7 @@ data class AccountDbModel (
     @ColumnInfo(name = "first_name") val firstName: String,
     @ColumnInfo(name = "last_name") val lastName: String,
     @ColumnInfo(name = "password") val password: String,
-    @ColumnInfo(name = "photo_profile") val photoProfile: ByteArray,
+    @ColumnInfo(name = "photo_profile") val photoProfile: String,
     @ColumnInfo(name = "balance") val balance: Int
 ) {
     override fun equals(other: Any?): Boolean {
@@ -37,7 +36,7 @@ data class AccountDbModel (
         result = 31 * result + lastName.hashCode()
         result = 31 * result + email.hashCode()
         result = 31 * result + password.hashCode()
-        result = 31 * result + photoProfile.contentHashCode()
+        result = 31 * result + photoProfile.hashCode()
         result = 31 * result + balance
         return result
     }

@@ -2,6 +2,7 @@ package com.most4dev.onlineshop.presentation
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
@@ -17,9 +18,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.most4dev.onlineshop.R
 import com.most4dev.onlineshop.databinding.ActivityMainBinding
+import com.most4dev.onlineshop.presentation.home.fragments.profile.UpdateProfileImageListener
 import com.most4dev.onlineshop.utils.cornersBottomNavigationView
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), UpdateProfileImageListener {
 
     private val navigationView: NavigationView by lazy {
         binding.navView
@@ -122,13 +124,13 @@ class MainActivity : AppCompatActivity() {
             binding.appBarMain.toolbar.visibility = View.VISIBLE
             binding.appBarMain.toolbarSearch.visibility = View.VISIBLE
             menuToolbar?.let {
-                it.findItem(R.id.menu_search).isVisible = true
+                it.findItem(R.id.menu_profile).isVisible = true
             }
         } else {
             binding.appBarMain.toolbar.visibility = View.VISIBLE
             binding.appBarMain.toolbarSearch.visibility = View.GONE
             menuToolbar?.let {
-                it.findItem(R.id.menu_search).isVisible = false
+                it.findItem(R.id.menu_profile).isVisible = false
             }
         }
 
@@ -159,6 +161,10 @@ class MainActivity : AppCompatActivity() {
         fun newInstance(activity: Activity): Intent {
             return Intent(activity, MainActivity::class.java)
         }
+
+    }
+
+    override fun updateProfileImage(bitmap: Bitmap) {
 
     }
 }
