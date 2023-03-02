@@ -1,5 +1,7 @@
 package com.most4dev.onlineshop.di
 
+import com.most4dev.onlineshop.domain.usecases.SearchProductUseCase
+import com.most4dev.onlineshop.presentation.MainViewModel
 import com.most4dev.onlineshop.presentation.auth.AuthViewModel
 import com.most4dev.onlineshop.presentation.home.fragments.cart.CartViewModel
 import com.most4dev.onlineshop.presentation.home.fragments.chat.ChatViewModel
@@ -60,6 +62,12 @@ val appModule = module {
 
     viewModel<OrderViewModel>{
         OrderViewModel()
+    }
+
+    viewModel<MainViewModel>{
+        MainViewModel(
+            searchProductUseCase = get()
+        )
     }
 
 }

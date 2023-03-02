@@ -4,6 +4,7 @@ import com.most4dev.onlineshop.data.network.models.*
 import com.most4dev.onlineshop.domain.entities.ItemProductEntity
 import com.most4dev.onlineshop.domain.entities.ProductEntity
 import com.most4dev.onlineshop.domain.entities.SaleProductEntity
+import com.most4dev.onlineshop.domain.entities.WordsEntity
 import java.util.*
 
 class ProductMapper {
@@ -60,11 +61,10 @@ class ProductMapper {
         )
     }
 
-    companion object {
-
-        const val EMPTY_DESCRIPTION = ""
-        const val EMPTY_RATING = 0
-
+    fun mapSearchWordsDtoToEntity(wordsDto: WordsDto): WordsEntity{
+        return WordsEntity(
+            words = wordsDto.words
+        )
     }
 
 }

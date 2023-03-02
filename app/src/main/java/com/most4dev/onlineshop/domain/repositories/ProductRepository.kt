@@ -1,11 +1,11 @@
 package com.most4dev.onlineshop.domain.repositories
 
+import android.database.MatrixCursor
 import com.most4dev.onlineshop.domain.entities.*
-import java.util.*
 
 interface ProductRepository {
 
-    fun searchProduct(nameProduct: String): List<ProductEntity>
+    suspend fun searchProduct(nameProduct: String): MatrixCursor
 
     fun getCategoryProducts(): List<ItemCategory>
 

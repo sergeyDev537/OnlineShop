@@ -1,13 +1,17 @@
 package com.most4dev.onlineshop.presentation
 
 import android.app.Activity
+import android.app.SearchManager
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
+import android.widget.AutoCompleteTextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
+import androidx.cursoradapter.widget.CursorAdapter
+import androidx.cursoradapter.widget.SimpleCursorAdapter
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -20,8 +24,12 @@ import com.most4dev.onlineshop.R
 import com.most4dev.onlineshop.databinding.ActivityMainBinding
 import com.most4dev.onlineshop.presentation.home.fragments.profile.UpdateProfileImageListener
 import com.most4dev.onlineshop.utils.cornersBottomNavigationView
+import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class MainActivity : AppCompatActivity(), UpdateProfileImageListener {
+
+    private var suggestions: List<String> = listOf()
 
     private val navigationView: NavigationView by lazy {
         binding.navView
@@ -45,6 +53,27 @@ class MainActivity : AppCompatActivity(), UpdateProfileImageListener {
         findNavController(R.id.nav_host_fragment_drawer)
     }
 
+    private val from by lazy {
+        arrayOf(SearchManager.SUGGEST_COLUMN_TEXT_1)
+    }
+
+    private val to by lazy {
+        intArrayOf(R.id.item_label)
+    }
+
+    private val searchAdapter by lazy {
+        SimpleCursorAdapter(
+            this,
+            R.layout.search_item,
+            null,
+            from,
+            to,
+            CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER
+        )
+    }
+
+    private val mainViewModel: MainViewModel by viewModel()
+
     private val appBarConfiguration by lazy {
         AppBarConfiguration(
             setOf(
@@ -60,7 +89,8 @@ class MainActivity : AppCompatActivity(), UpdateProfileImageListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        setSearchViewListener()
+        setObserves()
+        setSettingsSearchView()
         setSupportActionBar(binding.appBarMain.toolbar)
         setCornersBottomNavigation()
         setDestinationController()
@@ -70,23 +100,40 @@ class MainActivity : AppCompatActivity(), UpdateProfileImageListener {
 
     }
 
+    private fun setObserves() {
+        mainViewModel.listWords.observe(this) {
+            searchAdapter.changeCursor(it)
+        }
+    }
+
+    private fun setSettingsSearchView() {
+        setThresholdSearchView()
+        setSearchViewListener()
+        setSearchAdapter()
+    }
+
+    private fun setThresholdSearchView() {
+        val searchView = binding.appBarMain.toolbarSearch
+        val mQueryTextView = searchView.findViewById(androidx.appcompat.R.id.search_src_text) as AutoCompleteTextView
+        mQueryTextView.threshold = 1
+    }
+
+    private fun setSearchAdapter() {
+        binding.appBarMain.toolbarSearch.suggestionsAdapter = searchAdapter
+    }
+
     private fun setSearchViewListener() {
-        binding.appBarMain.toolbarSearch.setOnQueryTextFocusChangeListener(
-            object : SearchView.OnQueryTextListener,
-                View.OnFocusChangeListener {
+        binding.appBarMain.toolbarSearch.setOnQueryTextListener(
+            object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     return false
                 }
 
                 override fun onQueryTextChange(newText: String?): Boolean {
-                    return false
-                }
-
-                override fun onFocusChange(v: View?, hasFocus: Boolean) {
-                    if (hasFocus) {
-                        navController.navigate(R.id.action_nav_bottom_home_to_searchFragment)
+                    newText?.let {
+                        mainViewModel.getWords(it)
                     }
-
+                    return false
                 }
 
             })
