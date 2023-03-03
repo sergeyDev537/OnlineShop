@@ -76,7 +76,7 @@
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
             android:hint="@string/password"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:paddingStart="48dp"
             tools:ignore="RtlSymmetry" />
 

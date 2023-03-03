@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.most4dev.onlineshop.databinding.ItemCategoryBinding
 import com.most4dev.onlineshop.domain.entities.ItemCategory
 
-class CategoryAdapter: ListAdapter<ItemCategory, CategoryViewHolder>(CategoryDiffCallback()) {
+class CategoryAdapter : ListAdapter<ItemCategory, CategoryViewHolder>(CategoryDiffCallback()) {
 
     var clickItemCategory: ((ItemCategory) -> Unit)? = null
 

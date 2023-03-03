@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
@@ -31,7 +32,7 @@ class ProfileFragment : Fragment() {
 
     private val profileViewModel: ProfileViewModel by viewModel()
 
-    private lateinit var account: AccountEntity
+    private var account: AccountEntity? = null
 
     private lateinit var onUpdateProfileImage: UpdateProfileImageListener
 
@@ -59,15 +60,30 @@ class ProfileFragment : Fragment() {
     }
 
     private fun setObserves() {
-        profileViewModel.account.observe(viewLifecycleOwner){
-            account = it
-            setData(it)
+        profileViewModel.account.observe(viewLifecycleOwner) { accountEntity ->
+            account = accountEntity
+            accountEntity?.let {
+                setData(it)
+            }
+
+        }
+        profileViewModel.uploadPhotoError.observe(viewLifecycleOwner) {
+            binding.root.showSnackbar(it)
+        }
+        profileViewModel.logoutError.observe(viewLifecycleOwner) {
+            binding.root.showSnackbar(it)
         }
     }
 
     private fun setData(account: AccountEntity) {
-        Glide.with(requireContext())
-            .load(account.photoProfile)
+        account.photoProfile?.let {
+            Glide.with(requireContext())
+                .load(account.photoProfile)
+                .centerCrop()
+                .placeholder(R.drawable.portrait_placeholder)
+                .into(binding.imageProfile)
+        } ?: Glide.with(requireContext())
+            .load(R.drawable.portrait_placeholder)
             .centerCrop()
             .into(binding.imageProfile)
 
@@ -98,6 +114,7 @@ class ProfileFragment : Fragment() {
                 )
             }
         }
+
         binding.llLogout.setOnClickListener {
             profileViewModel.logout()
             startActivity(AuthActivity.newInstance(requireActivity()))
@@ -111,16 +128,23 @@ class ProfileFragment : Fragment() {
         ) { result: ActivityResult ->
             if (result.resultCode == Activity.RESULT_OK) {
                 result.data?.data?.let {
-                    profileViewModel.uploadPhoto(
-                        requireContext(),
-                        it,
-                        account
-                    )
+                    setUploadPhoto(it)
                 }
-
-
             }
         }
+
+    private fun setUploadPhoto(
+        uri: Uri,
+    ) {
+        account?.let {
+            profileViewModel.uploadPhoto(
+                requireContext(),
+                uri,
+                it
+            )
+        }
+
+    }
 
     private val resultPermissionLauncher =
         registerForActivityResult(
@@ -146,13 +170,10 @@ class ProfileFragment : Fragment() {
                     Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
                 resultLaunchChooseGallery.launch(intent)
             }
-
         }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }

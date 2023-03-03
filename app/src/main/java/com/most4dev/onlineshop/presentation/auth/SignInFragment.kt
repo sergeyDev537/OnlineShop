@@ -34,7 +34,6 @@ class SignInFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setClickListeners()
-
         setObserves()
     }
 
@@ -85,6 +84,7 @@ class SignInFragment : Fragment() {
             inputLayout.error = null
         } else {
             inputLayout.error = errorMessage
+            loadData(false)
         }
     }
 
@@ -102,6 +102,13 @@ class SignInFragment : Fragment() {
             findNavController().navigate(R.id.action_signInFragment_to_loginFragment)
         }
         binding.buttonSignIn.setOnClickListener {
+            loadData(true)
+            validateFields()
+        }
+    }
+
+    private fun loadData(loading: Boolean) {
+        if (loading) {
             binding.buttonSignIn.isEnabled = false
             binding.inputFirstName.isEnabled = false
             binding.inputLastName.isEnabled = false
@@ -110,7 +117,15 @@ class SignInFragment : Fragment() {
             binding.llSignInGoogle.isEnabled = false
             binding.llSignInApple.isEnabled = false
             binding.progressSignIn.visibility = View.VISIBLE
-            validateFields()
+        } else {
+            binding.buttonSignIn.isEnabled = true
+            binding.inputFirstName.isEnabled = true
+            binding.inputLastName.isEnabled = true
+            binding.inputEmail.isEnabled = true
+            binding.inputPassword.isEnabled = true
+            binding.llSignInGoogle.isEnabled = true
+            binding.llSignInApple.isEnabled = true
+            binding.progressSignIn.visibility = View.GONE
         }
     }
 

@@ -6,17 +6,15 @@ import android.database.MatrixCursor
 import android.provider.BaseColumns
 import com.most4dev.onlineshop.R
 import com.most4dev.onlineshop.data.mappers.ProductMapper
-import com.most4dev.onlineshop.data.network.api.ProductsApi
+import com.most4dev.onlineshop.data.network.api.ApiService
 import com.most4dev.onlineshop.domain.entities.*
 import com.most4dev.onlineshop.domain.repositories.ProductRepository
 
 class ProductRepositoryImpl(
     private val context: Context,
-    private val productsApi: ProductsApi,
+    private val productsApi: ApiService,
     private val productMapper: ProductMapper,
 ) : ProductRepository {
-
-    private val listAllProducts = arrayListOf<ProductEntity>()
 
     override suspend fun searchProduct(nameProduct: String): MatrixCursor {
         val wordsEntity = productsApi.getSearchWords().body()?.let {
@@ -53,31 +51,20 @@ class ProductRepositoryImpl(
     }
 
     override suspend fun getLatestProducts(): List<ProductEntity> {
-        val listLatestProducts = productsApi.getLatestProducts().body()?.let {
+        return productsApi.getLatestProducts().body()?.let {
             productMapper.mapListLatestProductDtoToEntity(it)
         } ?: listOf()
-        listAllProducts.plus(listLatestProducts)
-        return listLatestProducts
     }
 
     override suspend fun getFlashSaleProducts(): List<SaleProductEntity> {
-        val listSaleProducts = productsApi.getSaleProducts().body()?.let {
+        return productsApi.getSaleProducts().body()?.let {
             productMapper.mapListSalesProductDtoToEntity(it)
         } ?: listOf()
-        addListSale(listSaleProducts)
-        return listSaleProducts
-    }
-
-    private fun addListSale(listSaleProducts: List<SaleProductEntity>) {
-        val listProducts = listSaleProducts.map {
-            productMapper.mapSaleProductEntityToProductEntity(it)
-        }
-        listAllProducts.plus(listProducts)
     }
 
     override fun getBrands(): List<BrandEntity> {
         val listBrands = arrayListOf<BrandEntity>()
-        listBrands.add(BrandEntity("https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Adidas_Logo.svg/2560px-Adidas_Logo.svg.png"))
+        listBrands.add(BrandEntity("https://cdn.britannica.com/94/193794-050-0FB7060D/Adidas-logo.jpg"))
         listBrands.add(BrandEntity("https://static.vecteezy.com/system/resources/previews/010/994/232/original/nike-logo-black-clothes-design-icon-abstract-football-illustration-with-white-background-free-vector.jpg"))
         listBrands.add(BrandEntity("https://preview.thenewsmarket.com/Previews/RBOK/StillAssets/1920x1080/551064.png"))
         return listBrands

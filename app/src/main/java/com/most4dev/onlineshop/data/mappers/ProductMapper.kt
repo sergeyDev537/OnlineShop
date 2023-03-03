@@ -39,16 +39,6 @@ class ProductMapper {
         )
     }
 
-    fun mapSaleProductEntityToProductEntity(saleProductEntity: SaleProductEntity): ProductEntity{
-        return ProductEntity(
-            id = UUID.randomUUID(),
-            category = saleProductEntity.category,
-            name = saleProductEntity.name,
-            price = saleProductEntity.price,
-            image_urls = saleProductEntity.image_url
-        )
-    }
-
     fun mapItemDtoToEntity(itemProductDto: ItemProductDto): ItemProductEntity {
         return ItemProductEntity(
             name = itemProductDto.name,
@@ -61,7 +51,7 @@ class ProductMapper {
         )
     }
 
-    fun mapSearchWordsDtoToEntity(wordsDto: WordsDto): WordsEntity{
+    fun mapSearchWordsDtoToEntity(wordsDto: WordsDto): WordsEntity {
         return WordsEntity(
             words = wordsDto.words
         )
