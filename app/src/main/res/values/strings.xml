@@ -123,5 +123,6 @@
     <string name="permission_denied">Permission denied</string>
     <string name="error_upload_photo">Error upload photo: %1$s</string>
     <string name="error_logout">Error logout: %1$s</string>
+    <string name="cd_back">Back</string>
 
 </resources>
