@@ -7,7 +7,8 @@ import com.most4dev.onlineshop.domain.entities.AccountEntity
 
 interface ProfileRepository {
 
-    fun getDataAccount(email: String): LiveData<AccountEntity>
+    fun getDataAccount(email: String): LiveData<AccountEntity?>
+
     suspend fun uploadPhoto(context: Context, uri: Uri, accountEntity: AccountEntity)
 
 }

@@ -38,6 +38,7 @@ class LoginFragment : Fragment() {
         authViewModel.login.observe(viewLifecycleOwner){
             if (!it){
                 binding.root.showSnackbar(requireContext().getString(R.string.name_email_not_valid))
+                loadData(false)
             }
             else{
                 startActivity(MainActivity.newInstance(requireActivity()))
@@ -58,6 +59,10 @@ class LoginFragment : Fragment() {
         authViewModel.passwordLogInError.observe(viewLifecycleOwner){
             setErrorTextInputLayout(binding.inputPassword, it)
         }
+        authViewModel.loginError.observe(viewLifecycleOwner){
+            binding.root.showSnackbar(it)
+            loadData(false)
+        }
     }
 
     private fun setErrorTextInputLayout(inputLayout: TextInputLayout, errorMessage: String){
@@ -66,17 +71,28 @@ class LoginFragment : Fragment() {
         }
         else{
             inputLayout.error = errorMessage
+            loadData(false)
         }
     }
 
     private fun setClickListeners() {
         binding.buttonLogin.setOnClickListener {
-            binding.buttonLogin.isEnabled = false
-            binding.progressLogin.visibility = View.VISIBLE
+            loadData(true)
             authViewModel.validateLogIn(
                 binding.etFirstName.text.toString(),
                 binding.etPassword.text.toString()
             )
+        }
+    }
+
+    private fun loadData(loading: Boolean){
+        if (loading){
+            binding.buttonLogin.isEnabled = false
+            binding.progressLogin.visibility = View.VISIBLE
+        }
+        else{
+            binding.buttonLogin.isEnabled = true
+            binding.progressLogin.visibility = View.GONE
         }
     }
 

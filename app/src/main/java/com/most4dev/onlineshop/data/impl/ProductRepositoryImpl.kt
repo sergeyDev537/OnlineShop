@@ -6,17 +6,15 @@ import android.database.MatrixCursor
 import android.provider.BaseColumns
 import com.most4dev.onlineshop.R
 import com.most4dev.onlineshop.data.mappers.ProductMapper
-import com.most4dev.onlineshop.data.network.api.ProductsApi
+import com.most4dev.onlineshop.data.network.api.ApiService
 import com.most4dev.onlineshop.domain.entities.*
 import com.most4dev.onlineshop.domain.repositories.ProductRepository
 
 class ProductRepositoryImpl(
     private val context: Context,
-    private val productsApi: ProductsApi,
+    private val productsApi: ApiService,
     private val productMapper: ProductMapper,
 ) : ProductRepository {
-
-    private val listAllProducts = arrayListOf<ProductEntity>()
 
     override suspend fun searchProduct(nameProduct: String): MatrixCursor {
         val wordsEntity = productsApi.getSearchWords().body()?.let {
@@ -53,26 +51,15 @@ class ProductRepositoryImpl(
     }
 
     override suspend fun getLatestProducts(): List<ProductEntity> {
-        val listLatestProducts = productsApi.getLatestProducts().body()?.let {
+        return productsApi.getLatestProducts().body()?.let {
             productMapper.mapListLatestProductDtoToEntity(it)
         } ?: listOf()
-        listAllProducts.plus(listLatestProducts)
-        return listLatestProducts
     }
 
     override suspend fun getFlashSaleProducts(): List<SaleProductEntity> {
-        val listSaleProducts = productsApi.getSaleProducts().body()?.let {
+        return productsApi.getSaleProducts().body()?.let {
             productMapper.mapListSalesProductDtoToEntity(it)
         } ?: listOf()
-        addListSale(listSaleProducts)
-        return listSaleProducts
-    }
-
-    private fun addListSale(listSaleProducts: List<SaleProductEntity>) {
-        val listProducts = listSaleProducts.map {
-            productMapper.mapSaleProductEntityToProductEntity(it)
-        }
-        listAllProducts.plus(listProducts)
     }
 
     override fun getBrands(): List<BrandEntity> {

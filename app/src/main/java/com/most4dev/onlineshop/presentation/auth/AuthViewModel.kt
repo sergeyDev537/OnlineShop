@@ -1,5 +1,6 @@
 package com.most4dev.onlineshop.presentation.auth
 
+import android.accounts.NetworkErrorException
 import android.app.Application
 import android.util.Patterns
 import androidx.lifecycle.AndroidViewModel
@@ -10,12 +11,13 @@ import com.most4dev.onlineshop.R
 import com.most4dev.onlineshop.domain.entities.AccountEntity
 import com.most4dev.onlineshop.domain.usecases.LoginUseCase
 import com.most4dev.onlineshop.domain.usecases.SignInUseCase
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class AuthViewModel(
     application: Application,
     private val signInUseCase: SignInUseCase,
-    private val loginUseCase: LoginUseCase
+    private val loginUseCase: LoginUseCase,
 ) : AndroidViewModel(application) {
 
     private val context = application
@@ -23,46 +25,58 @@ class AuthViewModel(
     private var _signIn = MutableLiveData<Unit>()
     val signIn: LiveData<Unit> = _signIn
 
-    private val _signInError = MutableLiveData<String>()
+    private var _signInError = MutableLiveData<String>()
     val signInError: LiveData<String> = _signInError
 
-    private val _firstNameError = MutableLiveData<String>()
+    private var _firstNameError = MutableLiveData<String>()
     val firstNameError: LiveData<String> = _firstNameError
 
-    private val _lastNameError = MutableLiveData<String>()
+    private var _lastNameError = MutableLiveData<String>()
     val lastNameError: LiveData<String> = _lastNameError
 
-    private val _emailError = MutableLiveData<String>()
+    private var _emailError = MutableLiveData<String>()
     val emailError: LiveData<String> = _emailError
 
-    private val _passwordError = MutableLiveData<String>()
+    private var _passwordError = MutableLiveData<String>()
     val passwordError: LiveData<String> = _passwordError
 
-    private val _validDataSignIn = MutableLiveData<Boolean>()
+    private var _validDataSignIn = MutableLiveData<Boolean>()
     val validDataSignIn: LiveData<Boolean> = _validDataSignIn
 
-    private val _login = MutableLiveData<Boolean>()
+    private var _login = MutableLiveData<Boolean>()
     val login: LiveData<Boolean> = _login
 
-    private val _firstNameLogInError = MutableLiveData<String>()
+    private var _loginError = MutableLiveData<String>()
+    val loginError: LiveData<String> = _loginError
+
+    private var _firstNameLogInError = MutableLiveData<String>()
     val firstNameLogInError: LiveData<String> = _firstNameLogInError
 
-    private val _passwordLogInError = MutableLiveData<String>()
+    private var _passwordLogInError = MutableLiveData<String>()
     val passwordLogInError: LiveData<String> = _passwordLogInError
 
-    private val _validDataLogIn = MutableLiveData<Boolean>()
+    private var _validDataLogIn = MutableLiveData<Boolean>()
     val validDataLogIn: LiveData<Boolean> = _validDataLogIn
 
     fun signIn(accountEntity: AccountEntity) {
-        viewModelScope.launch {
-            if (signInUseCase(accountEntity)){
-                _signIn.value = Unit
-            }
-            else{
-                _signInError.value = context.getString(R.string.user_already_exists)
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                if (signInUseCase(accountEntity)) {
+                    _signIn.postValue(Unit)
+                } else {
+                    _signInError.postValue(context.getString(R.string.user_already_exists))
+                }
+            } catch (networkException: NetworkErrorException) {
+                _signInError.postValue(context.getString(R.string.error_connection_server))
+            } catch (e: Exception) {
+                _signInError.postValue(
+                    String.format(
+                        context.getString(R.string.error_auth),
+                        e.message
+                    )
+                )
             }
         }
-
     }
 
     fun validateSignIn(firstName: String, lastName: String, email: String, password: String) {
@@ -93,7 +107,7 @@ class AuthViewModel(
 
     }
 
-    fun validateLogIn(firstName: String, password: String){
+    fun validateLogIn(firstName: String, password: String) {
         if (firstName.isBlank()) {
             _firstNameLogInError.value = context.getString(R.string.first_name_empty)
         } else {
@@ -108,9 +122,21 @@ class AuthViewModel(
                 password.isNotBlank()
     }
 
-    fun login(firstName: String, password: String){
-        viewModelScope.launch {
-            _login.value = loginUseCase(firstName, password) ?: false
+    fun login(firstName: String, password: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                _login.postValue(loginUseCase(firstName, password) ?: false)
+            } catch (networkException: NetworkErrorException) {
+                _loginError.postValue(context.getString(R.string.error_connection_server))
+            } catch (e: Exception) {
+                _loginError.postValue(
+                    String.format(
+                        context.getString(R.string.error_auth),
+                        e.message
+                    )
+                )
+            }
+
         }
     }
 

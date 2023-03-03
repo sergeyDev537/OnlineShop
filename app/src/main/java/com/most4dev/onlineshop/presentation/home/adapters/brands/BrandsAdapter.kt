@@ -4,10 +4,11 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.Glide
+import com.most4dev.onlineshop.R
 import com.most4dev.onlineshop.databinding.ItemBrandsBinding
 import com.most4dev.onlineshop.domain.entities.BrandEntity
 
-class BrandsAdapter: ListAdapter<BrandEntity, BrandsViewHolder>(BrandsDiffCallback()) {
+class BrandsAdapter : ListAdapter<BrandEntity, BrandsViewHolder>(BrandsDiffCallback()) {
 
     var clickItemBrand: ((BrandEntity) -> Unit)? = null
 
@@ -30,10 +31,9 @@ class BrandsAdapter: ListAdapter<BrandEntity, BrandsViewHolder>(BrandsDiffCallba
         }
 
         Glide.with(context).load(itemBrand.imgURL)
-            .fitCenter()
-            .into(
-            binding.imageBrand
-        )
+            .centerCrop()
+            .placeholder(R.drawable.no_image_placeholder)
+            .into(binding.imageBrand)
 
     }
 }

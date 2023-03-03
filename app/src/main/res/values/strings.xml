@@ -28,6 +28,8 @@
     <string name="data_not_valid">Data is not valid</string>
     <string name="name_email_not_valid">First name or email not valid</string>
     <string name="password_not_valid">Password not valid</string>
+    <string name="error_connection_server">Error connection server</string>
+    <string name="error_auth">Error auth: %1$s</string>
 
     <!--CONTENT DESCRIPTION-->
     <string name="cd_sign_in_google">Icon sign in with google</string>
@@ -45,7 +47,6 @@
     <string name="cd_help">Help</string>
     <string name="cd_log_out">Log out</string>
 
-
     <!--NAVIGATION DRAWER-->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -62,9 +63,6 @@
     <string name="fragment_cart">This is cart fragment</string>
     <string name="fragment_chat">This is chat fragment</string>
     <string name="title_activity_bottom">BottomActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
 
     <!--ITEMS BOTTOM MENU-->
     <string name="home">Trade by bata</string>
@@ -86,6 +84,10 @@
     <string name="label_discount">%1$s%% off</string>
     <string name="hint_search">What are you looking for?</string>
     <string name="search">Search</string>
+    <string name="error_list_category">Error list category: %1$s</string>
+    <string name="error_latest_products">Error latest products: %1$s</string>
+    <string name="error_sale_products">Error sale products: %1$s</string>
+    <string name="error_brands">Error brands: %1$s</string>
 
     <!--ITEM DETAILS-->
     <string name="about_product">About product</string>
@@ -102,6 +104,8 @@
     <string name="label_sum">#%1$s</string>
     <string name="placeholder_count">1</string>
     <string name="_1">1</string>
+    <string name="error_item_product">Error item product: %1$s</string>
+    <string name="color_selected">Color selected</string>
 
     <!--ORDER-->
     <string name="order_fragment">Order fragment</string>
@@ -117,5 +121,7 @@
     <string name="help">Help</string>
     <string name="log_out">Log out</string>
     <string name="permission_denied">Permission denied</string>
+    <string name="error_upload_photo">Error upload photo: %1$s</string>
+    <string name="error_logout">Error logout: %1$s</string>
 
 </resources>
