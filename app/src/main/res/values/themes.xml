@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.OnlineShop" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.OnlineShop" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -13,4 +13,30 @@
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.OnlineShop.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.OnlineShop.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="colorOnPrimary">@color/black</item>
+    </style>
+
+    <style name="Theme.OnlineShop.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorOnPrimary">@color/black</item>
+    </style>
+
+    <style name="ThemeBottomNavigation" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorSurface">@color/white</item>
+        <item name="colorSecondaryContainer">@color/back_category</item>
+    </style>
+
+    <style name="ThemeOverlay.Toolbar" parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">
+        <item name="android:editTextColor">@color/back_gray_search</item>
+        <item name="android:textColorHint">@color/back_gray_search</item>
+        <item name="android:textSize">9sp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
 </resources>
