@@ -9,7 +9,8 @@ import com.most4dev.onlineshop.R
 import com.most4dev.onlineshop.databinding.ItemSaleBinding
 import com.most4dev.onlineshop.domain.entities.SaleProductEntity
 
-class SaleAdapter: ListAdapter<SaleProductEntity, SaleProductViewHolder>(SaleProductsDiffCallback()) {
+class SaleAdapter :
+    ListAdapter<SaleProductEntity, SaleProductViewHolder>(SaleProductsDiffCallback()) {
 
     var clickItemSaleProduct: ((SaleProductEntity) -> Unit)? = null
 
@@ -34,8 +35,8 @@ class SaleAdapter: ListAdapter<SaleProductEntity, SaleProductViewHolder>(SalePro
         Glide.with(context).load(itemSaleProduct.image_url)
             .centerCrop()
             .into(
-            binding.imageSale
-        )
+                binding.imageSale
+            )
 
         binding.tvCategoryItem.text = itemSaleProduct.category
         binding.tvItemName.text = itemSaleProduct.name
@@ -47,6 +48,5 @@ class SaleAdapter: ListAdapter<SaleProductEntity, SaleProductViewHolder>(SalePro
             context.getString(R.string.label_discount),
             itemSaleProduct.discount
         )
-
     }
 }

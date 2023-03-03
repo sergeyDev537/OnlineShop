@@ -7,8 +7,8 @@ data class AccountEntity(
     val firstName: String,
     val lastName: String,
     val password: String,
-    var photoProfile: Bitmap,
-    val balance: Int
+    var photoProfile: Bitmap?,
+    val balance: Int,
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

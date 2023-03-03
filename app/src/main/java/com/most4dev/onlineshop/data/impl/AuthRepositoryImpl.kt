@@ -20,7 +20,7 @@ class AuthRepositoryImpl(
             accountDao.createAccount(
                 accountMapper.mapEntityToDbModel(
                     account,
-                    accountMapper.mapBitmapToString(account.photoProfile)
+                    null
                 )
             )
             true
@@ -66,7 +66,7 @@ class AuthRepositoryImpl(
         }
     }
 
-    private fun removeAuthUser(){
+    private fun removeAuthUser() {
         val sharedPref = context.getSharedPreferences(PREFERENCE_FILE_KEY, Context.MODE_PRIVATE)
         with(sharedPref.edit()) {
             putString(EMAIL_USER_KEY, DEFAULT_VALUE_EMAIL)
@@ -85,8 +85,10 @@ class AuthRepositoryImpl(
     }
 
     override suspend fun getAccounts(): List<AccountEntity> {
-        listAccounts = accountDao.getAccount().map {
-            accountMapper.mapDbModelToEntity(it, accountMapper.mapStringToBitmap(it.photoProfile))
+        listAccounts = accountDao.getAccounts().map {
+            it.photoProfile?.let { s: String ->
+                accountMapper.mapDbModelToEntity(it, accountMapper.mapStringToBitmap(s))
+            } ?: accountMapper.mapDbModelToEntity(it, null)
         }
         return listAccounts
     }

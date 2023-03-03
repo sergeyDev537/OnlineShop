@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.most4dev.onlineshop.databinding.ItemColorBinding
-import com.most4dev.onlineshop.domain.entities.SaleProductEntity
 
 class ColorsProductAdapter :
     ListAdapter<String, ColorsProductViewHolder>(ColorsProductDiffCallback()) {

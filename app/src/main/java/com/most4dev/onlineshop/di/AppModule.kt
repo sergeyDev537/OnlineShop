@@ -1,6 +1,5 @@
 package com.most4dev.onlineshop.di
 
-import com.most4dev.onlineshop.domain.usecases.SearchProductUseCase
 import com.most4dev.onlineshop.presentation.MainViewModel
 import com.most4dev.onlineshop.presentation.auth.AuthViewModel
 import com.most4dev.onlineshop.presentation.home.fragments.cart.CartViewModel
@@ -26,6 +25,7 @@ val appModule = module {
 
     viewModel<HomeViewModel> {
         HomeViewModel(
+            application = androidApplication(),
             getCategoryProductsUseCase = get(),
             getLatestProductsUseCase = get(),
             getFlashSaleProductsUseCase = get(),
@@ -47,7 +47,7 @@ val appModule = module {
 
     viewModel<ProfileViewModel>{
         ProfileViewModel(
-            application = get(),
+            application = androidApplication(),
             getAccountUseCase = get(),
             uploadPhotoUseCase = get(),
             logoutUseCase = get()
@@ -56,6 +56,7 @@ val appModule = module {
 
     viewModel<ItemProductViewModel>{
         ItemProductViewModel(
+            application = androidApplication(),
             getProductUseCase = get()
         )
     }

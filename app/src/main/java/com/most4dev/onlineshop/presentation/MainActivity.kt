@@ -26,10 +26,7 @@ import com.most4dev.onlineshop.presentation.home.fragments.profile.UpdateProfile
 import com.most4dev.onlineshop.utils.cornersBottomNavigationView
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class MainActivity : AppCompatActivity(), UpdateProfileImageListener {
-
-    private var suggestions: List<String> = listOf()
 
     private val navigationView: NavigationView by lazy {
         binding.navView
@@ -97,7 +94,6 @@ class MainActivity : AppCompatActivity(), UpdateProfileImageListener {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navigationView.setupWithNavController(navController)
         navigationViewBottom.setupWithNavController(navController)
-
     }
 
     private fun setObserves() {
@@ -114,7 +110,9 @@ class MainActivity : AppCompatActivity(), UpdateProfileImageListener {
 
     private fun setThresholdSearchView() {
         val searchView = binding.appBarMain.toolbarSearch
-        val mQueryTextView = searchView.findViewById(androidx.appcompat.R.id.search_src_text) as AutoCompleteTextView
+        val mQueryTextView = searchView.findViewById(
+            androidx.appcompat.R.id.search_src_text
+        ) as AutoCompleteTextView
         mQueryTextView.threshold = 1
     }
 
@@ -135,8 +133,8 @@ class MainActivity : AppCompatActivity(), UpdateProfileImageListener {
                     }
                     return false
                 }
-
-            })
+            }
+        )
     }
 
     private fun setDestinationController() {
@@ -211,7 +209,7 @@ class MainActivity : AppCompatActivity(), UpdateProfileImageListener {
 
     }
 
-    override fun updateProfileImage(bitmap: Bitmap) {
+    override fun updateProfileImage(bitmap: Bitmap?) {
 
     }
 }

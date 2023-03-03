@@ -7,10 +7,9 @@ import com.most4dev.onlineshop.data.impl.AuthRepositoryImpl
 import com.most4dev.onlineshop.data.impl.ProductRepositoryImpl
 import com.most4dev.onlineshop.data.impl.ProfileRepositoryImpl
 import com.most4dev.onlineshop.data.mappers.AccountMapper
-import com.most4dev.onlineshop.data.mappers.ImageMapper
 import com.most4dev.onlineshop.data.mappers.ProductMapper
 import com.most4dev.onlineshop.data.network.api.ApiFactory
-import com.most4dev.onlineshop.data.network.api.ProductsApi
+import com.most4dev.onlineshop.data.network.api.ApiService
 import com.most4dev.onlineshop.domain.repositories.AuthRepository
 import com.most4dev.onlineshop.domain.repositories.ProductRepository
 import com.most4dev.onlineshop.domain.repositories.ProfileRepository
@@ -26,7 +25,7 @@ val dataModule = module {
         ).build()
     }
 
-    single<ProductsApi> {
+    single<ApiService> {
         ApiFactory.apiService
     }
 
@@ -37,10 +36,6 @@ val dataModule = module {
 
     single<AccountMapper> {
         AccountMapper()
-    }
-
-    single<ImageMapper> {
-        ImageMapper()
     }
 
     single<ProductMapper> {
