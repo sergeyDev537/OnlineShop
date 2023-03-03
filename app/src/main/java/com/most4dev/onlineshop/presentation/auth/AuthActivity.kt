@@ -15,10 +15,9 @@ class AuthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
     }
 
-    companion object{
+    companion object {
 
         fun newInstance(activity: Activity): Intent {
             return Intent(activity, AuthActivity::class.java)

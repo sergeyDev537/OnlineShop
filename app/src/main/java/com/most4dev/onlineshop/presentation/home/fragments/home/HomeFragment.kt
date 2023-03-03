@@ -14,6 +14,7 @@ import com.most4dev.onlineshop.presentation.home.adapters.brands.BrandsAdapter
 import com.most4dev.onlineshop.presentation.home.adapters.categories.CategoryAdapter
 import com.most4dev.onlineshop.presentation.home.adapters.latest.LatestProductsAdapter
 import com.most4dev.onlineshop.presentation.home.adapters.sale.SaleAdapter
+import com.most4dev.onlineshop.utils.showSnackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
@@ -92,6 +93,18 @@ class HomeFragment : Fragment() {
         }
         homeViewModel.listBrands.observe(viewLifecycleOwner){
             brandsAdapter.submitList(it)
+        }
+        homeViewModel.listCategoryError.observe(viewLifecycleOwner){
+            binding.root.showSnackbar(it)
+        }
+        homeViewModel.listLatestError.observe(viewLifecycleOwner){
+            binding.root.showSnackbar(it)
+        }
+        homeViewModel.listSaleError.observe(viewLifecycleOwner){
+            binding.root.showSnackbar(it)
+        }
+        homeViewModel.listBrandsError.observe(viewLifecycleOwner){
+            binding.root.showSnackbar(it)
         }
     }
 

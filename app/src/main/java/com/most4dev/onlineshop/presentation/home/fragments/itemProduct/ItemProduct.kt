@@ -13,6 +13,7 @@ import com.most4dev.onlineshop.domain.entities.ItemProductEntity
 import com.most4dev.onlineshop.presentation.home.adapters.detailsProduct.ColorsProductAdapter
 import com.most4dev.onlineshop.presentation.home.adapters.detailsProduct.ImagesProductAdapter
 import com.most4dev.onlineshop.utils.shareProduct
+import com.most4dev.onlineshop.utils.showSnackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ItemProduct : Fragment() {
@@ -66,6 +67,10 @@ class ItemProduct : Fragment() {
 
         binding.itemProductLike.setOnClickListener {
             binding.itemProductLike.setImageResource(R.drawable.ic_like_item_added_product)
+        }
+
+        binding.iconBack.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 
@@ -122,7 +127,7 @@ class ItemProduct : Fragment() {
         }
 
         colorsProductAdapter.clickItemColorProduct = {
-
+            binding.root.showSnackbar(requireContext().getString(R.string.color_selected))
         }
 
     }
@@ -130,6 +135,9 @@ class ItemProduct : Fragment() {
     private fun setObserves() {
         itemProductViewModel.itemProduct.observe(viewLifecycleOwner) {
             setData(it)
+        }
+        itemProductViewModel.itemProductError.observe(viewLifecycleOwner) {
+            binding.root.showSnackbar(it)
         }
     }
 

@@ -9,7 +9,7 @@ import java.io.ByteArrayOutputStream
 
 class AccountMapper {
 
-    fun mapEntityToDbModel(accountEntity: AccountEntity, stringImage: String): AccountDbModel{
+    fun mapEntityToDbModel(accountEntity: AccountEntity, stringImage: String?): AccountDbModel {
         return AccountDbModel(
             firstName = accountEntity.firstName,
             lastName = accountEntity.lastName,
@@ -20,7 +20,7 @@ class AccountMapper {
         )
     }
 
-    fun mapDbModelToEntity(accountDbModel: AccountDbModel, bitmap: Bitmap): AccountEntity{
+    fun mapDbModelToEntity(accountDbModel: AccountDbModel, bitmap: Bitmap?): AccountEntity {
         return AccountEntity(
             firstName = accountDbModel.firstName,
             lastName = accountDbModel.lastName,
@@ -31,20 +31,26 @@ class AccountMapper {
         )
     }
 
-    fun mapBitmapToString(bitmap: Bitmap): String{
-        val byteArrayOutputStream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.PNG, 60, byteArrayOutputStream)
-        val byteArray: ByteArray = byteArrayOutputStream.toByteArray()
-        return Base64.encodeToString(byteArray, Base64.DEFAULT)
+    fun mapBitmapToString(bitmap: Bitmap?): String? {
+        bitmap?.let {
+            val byteArrayOutputStream = ByteArrayOutputStream()
+            it.compress(Bitmap.CompressFormat.PNG, 60, byteArrayOutputStream)
+            val byteArray: ByteArray = byteArrayOutputStream.toByteArray()
+            return Base64.encodeToString(byteArray, Base64.DEFAULT)
+        } ?: return null
+
     }
 
-    fun mapStringToBitmap(string: String): Bitmap{
-        val byteArray = Base64.decode(string, Base64.DEFAULT)
-        return BitmapFactory.decodeByteArray(
-            byteArray,
-            0,
-            byteArray.size
-        )
+    fun mapStringToBitmap(string: String?): Bitmap? {
+        string?.let {
+            val byteArray = Base64.decode(it, Base64.DEFAULT)
+            return BitmapFactory.decodeByteArray(
+                byteArray,
+                0,
+                byteArray.size
+            )
+        } ?: return null
+
     }
 
 }

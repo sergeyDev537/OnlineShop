@@ -26,6 +26,13 @@
         app:layout_constraintGuide_percent="0.15" />
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_center"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_start"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -44,10 +51,12 @@
         style="@style/TextInputLayoutAuth"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toTopOf="@id/input_last_name"
-        app:layout_constraintEnd_toStartOf="@id/guideline_end"
+        app:layout_constraintEnd_toEndOf="@id/guideline_center"
         app:layout_constraintStart_toStartOf="@id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@id/guideline_title"
+        app:layout_constraintTop_toTopOf="@+id/guideline_title"
         app:layout_constraintVertical_chainStyle="spread">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -65,8 +74,10 @@
         style="@style/TextInputLayoutAuth"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/input_email"
-        app:layout_constraintEnd_toEndOf="@id/guideline_end"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_sign_in"
+        app:layout_constraintEnd_toEndOf="@id/guideline_center"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@id/guideline_start"
         app:layout_constraintTop_toBottomOf="@id/input_first_name">
@@ -86,11 +97,13 @@
         style="@style/TextInputLayoutAuth"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toTopOf="@id/input_password"
         app:layout_constraintEnd_toEndOf="@id/guideline_end"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@id/guideline_start"
-        app:layout_constraintTop_toBottomOf="@id/input_last_name">
+        app:layout_constraintStart_toStartOf="@id/guideline_center"
+        app:layout_constraintTop_toTopOf="@+id/guideline_title">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_email"
@@ -107,10 +120,12 @@
         style="@style/TextInputLayoutAuth"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toTopOf="@id/button_sign_in"
         app:layout_constraintEnd_toEndOf="@id/guideline_end"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@id/guideline_start"
+        app:layout_constraintStart_toStartOf="@id/guideline_center"
         app:layout_constraintTop_toBottomOf="@id/input_email"
         app:passwordToggleEnabled="true">
 
@@ -177,13 +192,11 @@
         android:id="@+id/ll_sign_in_google"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="18dp"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/ll_sign_in_apple"
-        app:layout_constraintEnd_toStartOf="@+id/guideline_end"
+        app:layout_constraintEnd_toStartOf="@+id/ll_sign_in_apple"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_log_in"
         app:layout_constraintVertical_chainStyle="packed"
         tools:ignore="UseCompoundDrawables">
@@ -210,12 +223,14 @@
         android:id="@+id/ll_sign_in_apple"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="18dp"
+        android:layout_marginStart="16dp"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/ll_sign_in_google"
-        app:layout_constraintTop_toBottomOf="@+id/ll_sign_in_google"
+        app:layout_constraintBottom_toBottomOf="@+id/ll_sign_in_google"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/ll_sign_in_google"
+        app:layout_constraintTop_toTopOf="@+id/ll_sign_in_google"
         tools:ignore="UseCompoundDrawables">
 
         <ImageView

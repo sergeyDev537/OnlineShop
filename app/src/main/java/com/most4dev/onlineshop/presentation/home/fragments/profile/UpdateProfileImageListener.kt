@@ -4,6 +4,6 @@ import android.graphics.Bitmap
 
 interface UpdateProfileImageListener {
 
-    fun updateProfileImage(bitmap: Bitmap)
+    fun updateProfileImage(bitmap: Bitmap?)
 
 }

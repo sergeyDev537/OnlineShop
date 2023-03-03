@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.Glide
 import com.most4dev.onlineshop.databinding.ItemImageProductBinding
 
-class ImagesProductAdapter: ListAdapter<String, ImagesProductViewHolder>(ImagesProductDiffCallback()) {
+class ImagesProductAdapter :
+    ListAdapter<String, ImagesProductViewHolder>(ImagesProductDiffCallback()) {
 
     var clickItemImageProduct: ((String) -> Unit)? = null
 
@@ -32,8 +33,8 @@ class ImagesProductAdapter: ListAdapter<String, ImagesProductViewHolder>(ImagesP
         Glide.with(context).load(itemImageProduct)
             .centerCrop()
             .into(
-            binding.root
-        )
+                binding.root
+            )
 
     }
 }

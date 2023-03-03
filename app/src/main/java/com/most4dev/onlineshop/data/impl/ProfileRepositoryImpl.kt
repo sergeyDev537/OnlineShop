@@ -17,12 +17,17 @@ class ProfileRepositoryImpl(
     private val accountDao: AccountDao,
     private val accountMapper: AccountMapper,
 ) : ProfileRepository {
-    override fun getDataAccount(email: String): LiveData<AccountEntity> {
-        return accountDao.checkEmail(email).map {
-            accountMapper.mapDbModelToEntity(it, accountMapper.mapStringToBitmap(it.photoProfile))
+
+    override fun getDataAccount(email: String): LiveData<AccountEntity?> {
+        return accountDao.checkEmail(email).map { accountDbModel ->
+            accountDbModel?.let {
+                accountMapper.mapDbModelToEntity(
+                    it,
+                    accountMapper.mapStringToBitmap(it.photoProfile)
+                )
+            }
         }
     }
-
 
     override suspend fun uploadPhoto(context: Context, uri: Uri, accountEntity: AccountEntity) {
         val bitmap = getBitmap(context, uri)
@@ -47,15 +52,11 @@ class ProfileRepositoryImpl(
                 null
             )!!
         cursor.moveToFirst()
-        val columnIndex: Int =
-            cursor.getColumnIndex(filePath[0])
-        val picturePath: String =
-            cursor.getString(columnIndex)
+        val columnIndex: Int = cursor.getColumnIndex(filePath[0])
+        val picturePath: String = cursor.getString(columnIndex)
         cursor.close()
-        var thumbnail =
-            BitmapFactory.decodeFile(picturePath)
-        thumbnail =
-            getResizedBitmap(thumbnail, 400)
+        var thumbnail = BitmapFactory.decodeFile(picturePath)
+        thumbnail = getResizedBitmap(thumbnail, 400)
         return thumbnail
     }
 
@@ -65,8 +66,7 @@ class ProfileRepositoryImpl(
     ): Bitmap? {
         var width = image.width
         var height = image.height
-        val bitmapRatio =
-            width.toFloat() / height.toFloat()
+        val bitmapRatio = width.toFloat() / height.toFloat()
         if (bitmapRatio > 1) {
             width = maxSize
             height = (width / bitmapRatio).toInt()
@@ -81,5 +81,4 @@ class ProfileRepositoryImpl(
             true
         )
     }
-
 }
