@@ -68,6 +68,10 @@ class ItemProduct : Fragment() {
         binding.itemProductLike.setOnClickListener {
             binding.itemProductLike.setImageResource(R.drawable.ic_like_item_added_product)
         }
+
+        binding.iconBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
     }
 
     private fun confirmOrder() {
