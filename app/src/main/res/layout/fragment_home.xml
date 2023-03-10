@@ -26,26 +26,6 @@
             android:orientation="vertical"
             app:layout_constraintGuide_end="16dp" />
 
-        <!--    <com.google.android.material.textfield.TextInputLayout-->
-        <!--        android:id="@+id/input_search_text"-->
-        <!--        style="@style/TextInputLayoutAuth"-->
-        <!--        android:layout_width="0dp"-->
-        <!--        android:layout_height="wrap_content"-->
-        <!--        app:layout_constraintEnd_toStartOf="@id/guideline_end"-->
-        <!--        app:layout_constraintStart_toStartOf="@id/guideline_start"-->
-        <!--        app:layout_constraintTop_toTopOf="parent"-->
-        <!--        app:layout_constraintVertical_chainStyle="spread">-->
-
-        <!--        <com.google.android.material.textfield.TextInputEditText-->
-        <!--            android:id="@+id/et_search_text"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="match_parent"-->
-        <!--            android:gravity="center_horizontal"-->
-        <!--            android:hint="@string/first_name"-->
-        <!--            android:inputType="textPersonName" />-->
-
-        <!--    </com.google.android.material.textfield.TextInputLayout>-->
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_categories"
             android:layout_width="0dp"

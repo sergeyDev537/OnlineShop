@@ -1,36 +1,18 @@
 package com.most4dev.onlineshop.presentation.home.adapters.latest
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.Glide
 import com.most4dev.onlineshop.R
 import com.most4dev.onlineshop.databinding.ItemLatestBinding
 import com.most4dev.onlineshop.domain.entities.ProductEntity
+import com.most4dev.onlineshop.presentation.base.BaseAdapter
+import com.most4dev.onlineshop.presentation.base.BaseViewHolder
 
-class LatestProductsAdapter : ListAdapter<ProductEntity, LatestProductsViewHolder>(
-    LatestProductsDiffCallback()
-) {
+class LatestProductsAdapter : BaseAdapter<ProductEntity, ItemLatestBinding>(ItemLatestBinding::inflate) {
 
-    var clickItemLatestProduct: ((ProductEntity) -> Unit)? = null
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LatestProductsViewHolder {
-        val binding = ItemLatestBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
-        return LatestProductsViewHolder(binding)
-    }
-
-    override fun onBindViewHolder(holder: LatestProductsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         val itemLatestProduct = getItem(position)
-        val binding = holder.binding
+        val binding = (holder.binding) as ItemLatestBinding
         val context = binding.root.context
-
-        binding.root.setOnClickListener {
-            clickItemLatestProduct?.invoke(itemLatestProduct)
-        }
 
         Glide.with(context)
             .load(itemLatestProduct.image_urls)

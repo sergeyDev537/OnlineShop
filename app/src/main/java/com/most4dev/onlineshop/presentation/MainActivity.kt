@@ -28,6 +28,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity(), UpdateProfileImageListener {
 
+    private val mainViewModel: MainViewModel by viewModel()
+
     private val navigationView: NavigationView by lazy {
         binding.navView
     }
@@ -68,8 +70,6 @@ class MainActivity : AppCompatActivity(), UpdateProfileImageListener {
             CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER
         )
     }
-
-    private val mainViewModel: MainViewModel by viewModel()
 
     private val appBarConfiguration by lazy {
         AppBarConfiguration(

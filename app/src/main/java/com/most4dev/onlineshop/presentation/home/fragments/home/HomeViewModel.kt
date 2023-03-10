@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.most4dev.onlineshop.R
 import com.most4dev.onlineshop.domain.entities.BrandEntity
@@ -74,7 +73,7 @@ class HomeViewModel(
     private fun getLatestProducts() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                _listLatest.postValue(getLatestProductsUseCase() ?: listOf())
+                _listLatest.postValue(getLatestProductsUseCase())
             } catch (e: Exception) {
                 _listLatestError.postValue(
                     String.format(
@@ -90,7 +89,7 @@ class HomeViewModel(
     private fun getFlashSaleProducts() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                _listSale.postValue(getFlashSaleProductsUseCase() ?: listOf())
+                _listSale.postValue(getFlashSaleProductsUseCase())
             } catch (e: Exception) {
                 _listSaleError.postValue(
                     String.format(

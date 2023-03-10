@@ -1,31 +1,20 @@
 package com.most4dev.onlineshop.presentation.home.adapters.sale
 
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.Glide
 import com.most4dev.onlineshop.R
 import com.most4dev.onlineshop.databinding.ItemSaleBinding
 import com.most4dev.onlineshop.domain.entities.SaleProductEntity
+import com.most4dev.onlineshop.presentation.base.BaseAdapter
+import com.most4dev.onlineshop.presentation.base.BaseViewHolder
 
-class SaleAdapter :
-    ListAdapter<SaleProductEntity, SaleProductViewHolder>(SaleProductsDiffCallback()) {
+class SaleAdapter : BaseAdapter<SaleProductEntity, ItemSaleBinding>(ItemSaleBinding::inflate) {
 
     var clickItemSaleProduct: ((SaleProductEntity) -> Unit)? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SaleProductViewHolder {
-        val binding = ItemSaleBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
-        return SaleProductViewHolder(binding)
-    }
-
-    override fun onBindViewHolder(holder: SaleProductViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         val itemSaleProduct = getItem(position)
-        val binding = holder.binding
+        val binding = (holder.binding) as ItemSaleBinding
         val context = binding.root.context
 
         binding.root.setOnClickListener {

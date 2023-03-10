@@ -125,7 +125,7 @@ class AuthViewModel(
     fun login(firstName: String, password: String) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                _login.postValue(loginUseCase(firstName, password) ?: false)
+                _login.postValue(loginUseCase(firstName, password))
             } catch (networkException: NetworkErrorException) {
                 _loginError.postValue(context.getString(R.string.error_connection_server))
             } catch (e: Exception) {
@@ -136,7 +136,6 @@ class AuthViewModel(
                     )
                 )
             }
-
         }
     }
 
