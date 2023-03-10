@@ -9,24 +9,13 @@ import com.google.android.material.textfield.TextInputLayout
 import com.most4dev.onlineshop.R
 import com.most4dev.onlineshop.databinding.FragmentLoginBinding
 import com.most4dev.onlineshop.presentation.MainActivity
+import com.most4dev.onlineshop.presentation.base.BaseFragment
 import com.most4dev.onlineshop.utils.showSnackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LoginFragment : Fragment() {
-
-    private var _binding: FragmentLoginBinding? = null
-    private val binding: FragmentLoginBinding
-        get() = _binding ?: throw RuntimeException("FragmentLoginBinding is null")
+class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::inflate) {
 
     private val authViewModel by viewModel<AuthViewModel>()
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        _binding = FragmentLoginBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -94,11 +83,6 @@ class LoginFragment : Fragment() {
             binding.buttonLogin.isEnabled = true
             binding.progressLogin.visibility = View.GONE
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
 }

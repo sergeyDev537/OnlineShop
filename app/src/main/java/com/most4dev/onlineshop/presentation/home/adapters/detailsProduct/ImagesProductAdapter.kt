@@ -1,29 +1,17 @@
 package com.most4dev.onlineshop.presentation.home.adapters.detailsProduct
 
-
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.Glide
 import com.most4dev.onlineshop.databinding.ItemImageProductBinding
+import com.most4dev.onlineshop.presentation.base.BaseAdapter
+import com.most4dev.onlineshop.presentation.base.BaseViewHolder
 
-class ImagesProductAdapter :
-    ListAdapter<String, ImagesProductViewHolder>(ImagesProductDiffCallback()) {
+class ImagesProductAdapter : BaseAdapter<String, ItemImageProductBinding>(ItemImageProductBinding::inflate) {
 
     var clickItemImageProduct: ((String) -> Unit)? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImagesProductViewHolder {
-        val binding = ItemImageProductBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
-        return ImagesProductViewHolder(binding)
-    }
-
-    override fun onBindViewHolder(holder: ImagesProductViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         val itemImageProduct = getItem(position)
-        val binding = holder.binding
+        val binding = (holder.binding) as ItemImageProductBinding
         val context = binding.root.context
 
         binding.root.setOnClickListener {

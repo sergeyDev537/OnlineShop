@@ -1,10 +1,7 @@
 package com.most4dev.onlineshop.presentation.home.fragments.itemProduct
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.most4dev.onlineshop.R
@@ -12,15 +9,12 @@ import com.most4dev.onlineshop.databinding.FragmentItemProductBinding
 import com.most4dev.onlineshop.domain.entities.ItemProductEntity
 import com.most4dev.onlineshop.presentation.home.adapters.detailsProduct.ColorsProductAdapter
 import com.most4dev.onlineshop.presentation.home.adapters.detailsProduct.ImagesProductAdapter
+import com.most4dev.onlineshop.presentation.base.BaseFragment
 import com.most4dev.onlineshop.utils.shareProduct
 import com.most4dev.onlineshop.utils.showSnackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ItemProduct : Fragment() {
-
-    private var _binding: FragmentItemProductBinding? = null
-    private val binding: FragmentItemProductBinding
-        get() = _binding ?: throw RuntimeException("FragmentItemProductBinding is null")
+class ItemProduct : BaseFragment<FragmentItemProductBinding>(FragmentItemProductBinding::inflate) {
 
     private val itemProductViewModel: ItemProductViewModel by viewModel()
 
@@ -30,14 +24,6 @@ class ItemProduct : Fragment() {
 
     private val colorsProductAdapter by lazy {
         ColorsProductAdapter()
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        _binding = FragmentItemProductBinding.inflate(inflater, container, false)
-        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -159,11 +145,6 @@ class ItemProduct : Fragment() {
             .load(path)
             .centerCrop()
             .into(binding.imageItemProduct)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     companion object {

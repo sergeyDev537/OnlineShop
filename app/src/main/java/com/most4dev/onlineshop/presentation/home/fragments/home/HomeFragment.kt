@@ -1,10 +1,7 @@
 package com.most4dev.onlineshop.presentation.home.fragments.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.most4dev.onlineshop.R
 import com.most4dev.onlineshop.databinding.FragmentHomeBinding
@@ -14,17 +11,14 @@ import com.most4dev.onlineshop.presentation.home.adapters.brands.BrandsAdapter
 import com.most4dev.onlineshop.presentation.home.adapters.categories.CategoryAdapter
 import com.most4dev.onlineshop.presentation.home.adapters.latest.LatestProductsAdapter
 import com.most4dev.onlineshop.presentation.home.adapters.sale.SaleAdapter
+import com.most4dev.onlineshop.presentation.base.BaseFragment
 import com.most4dev.onlineshop.utils.showSnackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
     private var listLatestProducts: List<ProductEntity> = arrayListOf()
     private var listSaleProducts: List<SaleProductEntity> = arrayListOf()
-
-    private var _binding: FragmentHomeBinding? = null
-    private val binding: FragmentHomeBinding
-        get() = _binding ?: throw RuntimeException("FragmentHomeBinding is null")
 
     private val homeViewModel: HomeViewModel by viewModel()
 
@@ -44,14 +38,6 @@ class HomeFragment : Fragment() {
         BrandsAdapter()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setAdapters()
@@ -64,20 +50,8 @@ class HomeFragment : Fragment() {
         binding.rvFlashSale.adapter = saleProductsAdapter
         binding.rvBrands.adapter = brandsAdapter
 
-        categoryAdapter.clickItemCategory = {
-
-        }
-
-        latestProductsAdapter.clickItemLatestProduct = {
-
-        }
-
         saleProductsAdapter.clickItemSaleProduct = {
             findNavController().navigate(R.id.action_nav_bottom_home_to_itemProduct)
-        }
-
-        brandsAdapter.clickItemBrand = {
-
         }
     }
 
@@ -157,11 +131,6 @@ class HomeFragment : Fragment() {
             binding.tvFlashSale.visibility = View.GONE
             binding.rvFlashSale.visibility = View.GONE
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
 }
