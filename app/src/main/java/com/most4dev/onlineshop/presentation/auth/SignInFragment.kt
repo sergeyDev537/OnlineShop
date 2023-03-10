@@ -12,24 +12,13 @@ import com.most4dev.onlineshop.R
 import com.most4dev.onlineshop.databinding.FragmentSignInBinding
 import com.most4dev.onlineshop.domain.entities.AccountEntity
 import com.most4dev.onlineshop.presentation.MainActivity
+import com.most4dev.onlineshop.presentation.base.BaseFragment
 import com.most4dev.onlineshop.utils.showSnackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SignInFragment : Fragment() {
-
-    private var _binding: FragmentSignInBinding? = null
-    private val binding: FragmentSignInBinding
-        get() = _binding ?: throw RuntimeException("FragmentSignInBinding is null")
+class SignInFragment : BaseFragment<FragmentSignInBinding>(FragmentSignInBinding::inflate) {
 
     private val authViewModel by viewModel<AuthViewModel>()
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        _binding = FragmentSignInBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -127,11 +116,6 @@ class SignInFragment : Fragment() {
             binding.llSignInApple.isEnabled = true
             binding.progressSignIn.visibility = View.GONE
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     companion object {

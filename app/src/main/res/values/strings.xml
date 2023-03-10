@@ -1,14 +1,6 @@
 <resources>
     <string name="app_name">OnlineShop</string>
 
-    <!--LIST CATEGORIES-->
-    <string name="phones">Phones</string>
-    <string name="headphones">Headphones</string>
-    <string name="games">Games</string>
-    <string name="cars">Cars</string>
-    <string name="furniture">Furniture</string>
-    <string name="kids">Kids</string>
-
     <!--AUTHORIZATION-->
     <string name="sign_in">Sign in</string>
     <string name="first_name">First name</string>
@@ -97,8 +89,6 @@
     <string name="cd_image_star">Product rating</string>
     <string name="colors">Color:</string>
     <string name="quantity">Quantity</string>
-    <string name="plus">+</string>
-    <string name="minus">-</string>
     <string name="add_to_cart">Add to cart</string>
     <string name="label_reviews">(%1$s reviews)</string>
     <string name="label_sum">#%1$s</string>

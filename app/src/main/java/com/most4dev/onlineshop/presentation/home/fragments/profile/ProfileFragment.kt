@@ -8,27 +8,21 @@ import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.most4dev.onlineshop.R
 import com.most4dev.onlineshop.databinding.FragmentProfileBinding
 import com.most4dev.onlineshop.domain.entities.AccountEntity
 import com.most4dev.onlineshop.presentation.auth.AuthActivity
+import com.most4dev.onlineshop.presentation.base.BaseFragment
 import com.most4dev.onlineshop.utils.showSnackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ProfileFragment : Fragment() {
-
-    private var _binding: FragmentProfileBinding? = null
-    private val binding: FragmentProfileBinding
-        get() = _binding ?: throw RuntimeException("FragmentProfileBinding is null")
+class ProfileFragment : BaseFragment<FragmentProfileBinding>(FragmentProfileBinding::inflate) {
 
     private val profileViewModel: ProfileViewModel by viewModel()
 
@@ -43,14 +37,6 @@ class ProfileFragment : Fragment() {
         } else {
             throw RuntimeException("Activity must implement UpdateProfileImageListener")
         }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        _binding = FragmentProfileBinding.inflate(inflater, container, false)
-        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -171,9 +157,4 @@ class ProfileFragment : Fragment() {
                 resultLaunchChooseGallery.launch(intent)
             }
         }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }

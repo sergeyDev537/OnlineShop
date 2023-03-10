@@ -46,10 +46,6 @@ val domainModule = module {
     }
 
     factory {
-        GetAccountsUseCase(authRepository = get())
-    }
-
-    factory {
         GetAccountUseCase(profileRepository = get())
     }
 
