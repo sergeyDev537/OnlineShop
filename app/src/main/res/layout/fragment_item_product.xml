@@ -6,6 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".presentation.home.fragments.itemProduct.ItemProduct">
 
+    <ImageView
+        android:id="@+id/icon_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_back"
+        android:padding="8dp"
+        android:elevation="4dp"
+        android:contentDescription="@string/cd_back"
+        app:layout_constraintBottom_toTopOf="@+id/card_image_item_product"
+        app:layout_constraintStart_toStartOf="@+id/guideline_start"
+        app:layout_constraintTop_toTopOf="@+id/card_image_item_product" />
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_image_item_product"
         android:layout_width="match_parent"
