@@ -101,7 +101,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/gray_circle"
-                android:contentDescription="@string/trade_store"
+                android:contentDescription="@string/cd_trade_store"
                 android:padding="8dp"
                 android:src="@drawable/ic_credit_card" />
 
@@ -142,7 +142,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/gray_circle"
-                android:contentDescription="@string/payment_method"
+                android:contentDescription="@string/cd_payment_method"
                 android:padding="8dp"
                 android:src="@drawable/ic_credit_card" />
 
@@ -183,7 +183,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/gray_circle"
-                android:contentDescription="@string/balance"
+                android:contentDescription="@string/cd_balance"
                 android:padding="8dp"
                 android:src="@drawable/ic_credit_card" />
 
@@ -227,7 +227,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/gray_circle"
-                android:contentDescription="@string/trade_history"
+                android:contentDescription="@string/cd_trade_history"
                 android:padding="8dp"
                 android:src="@drawable/ic_credit_card" />
 
@@ -268,7 +268,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/gray_circle"
-                android:contentDescription="@string/restore_purchase"
+                android:contentDescription="@string/cd_restore_purchase"
                 android:padding="8dp"
                 android:src="@drawable/ic_restore" />
 
@@ -310,7 +310,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/gray_circle"
-                android:contentDescription="@string/help"
+                android:contentDescription="@string/cd_help"
                 android:padding="8dp"
                 android:src="@drawable/ic_help" />
 
@@ -347,7 +347,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="@drawable/gray_circle"
-                android:contentDescription="@string/log_out"
+                android:contentDescription="@string/cd_log_out"
                 android:padding="8dp"
                 android:src="@drawable/ic_log_out" />
 

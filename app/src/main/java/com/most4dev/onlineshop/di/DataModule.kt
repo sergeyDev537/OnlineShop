@@ -1,7 +1,5 @@
 package com.most4dev.onlineshop.di
 
-import androidx.room.Room
-import com.most4dev.onlineshop.data.database.dao.AccountDao
 import com.most4dev.onlineshop.data.database.model.AppDatabase
 import com.most4dev.onlineshop.data.impl.AuthRepositoryImpl
 import com.most4dev.onlineshop.data.impl.ProductRepositoryImpl
@@ -9,7 +7,6 @@ import com.most4dev.onlineshop.data.impl.ProfileRepositoryImpl
 import com.most4dev.onlineshop.data.mappers.AccountMapper
 import com.most4dev.onlineshop.data.mappers.ProductMapper
 import com.most4dev.onlineshop.data.network.api.ApiFactory
-import com.most4dev.onlineshop.data.network.api.ApiService
 import com.most4dev.onlineshop.domain.repositories.AuthRepository
 import com.most4dev.onlineshop.domain.repositories.ProductRepository
 import com.most4dev.onlineshop.domain.repositories.ProfileRepository
@@ -17,28 +14,24 @@ import org.koin.dsl.module
 
 val dataModule = module {
 
-    single<AppDatabase> {
-        Room.databaseBuilder(
-            get(),
-            AppDatabase::class.java,
-            AppDatabase.DB_NAME
-        ).build()
+    single {
+        AppDatabase.getInstance(application = get())
     }
 
-    single<ApiService> {
+    single {
         ApiFactory.apiService
     }
 
-    single<AccountDao> {
+    single {
         val database = get<AppDatabase>()
         database.accountDao()
     }
 
-    single<AccountMapper> {
+    single {
         AccountMapper()
     }
 
-    single<ProductMapper> {
+    single {
         ProductMapper()
     }
 
