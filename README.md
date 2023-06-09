@@ -1,19 +1,19 @@
 # OnlineShop
 
 Stack:
-Kotlin, Coroutines, LiveData, Koin, MVVM, Clean Architecture
+Kotlin, Coroutines, LiveData, Koin, MVVM, Clean Architecture, MultiModules
 
 Screenshots:
 
-<img src="https://user-images.githubusercontent.com/28898284/222746304-b7e2303a-6ffc-430e-830b-d97d13f81752.png" width="20%"></img>
-<img src="https://user-images.githubusercontent.com/28898284/222746499-47547e83-9c19-4bdc-9020-3fd7e6b983a4.png" width="20%"></img>
-<img src="https://user-images.githubusercontent.com/28898284/222746742-4471c6cc-5dd2-4260-8408-c6261a1a4f80.png" width="20%"></img>
-<img src="https://user-images.githubusercontent.com/28898284/222746940-5c614d69-d757-4d79-ae79-a0b10b3cd17e.png" width="20%"></img>
-<img src="https://user-images.githubusercontent.com/28898284/222765241-a7495be6-aeee-4fca-9c45-6d97bf5b1720.png" width="20%"></img>
+<img src="https://github.com/sergeyDev537/OnlineShop/assets/28898284/3cd20be7-abb1-4d79-8bce-10ddfdb70d48" width="20%"></img>
+<img src="https://github.com/sergeyDev537/OnlineShop/assets/28898284/9cd78f24-ee93-4180-8d89-3e3540f3343f" width="20%"></img>
+<img src="https://github.com/sergeyDev537/OnlineShop/assets/28898284/33125ef8-80e8-40f2-a7a0-b481cabd26b5" width="20%"></img>
+<img src="https://github.com/sergeyDev537/OnlineShop/assets/28898284/a477746b-cda1-457b-8ed6-9ff638d6d7e5" width="20%"></img>
+
 
 
 Video:
 
-[online_shop.webm](https://user-images.githubusercontent.com/28898284/222764603-fca873a2-ca34-469e-b214-882e5c38f5e5.webm)
+https://github.com/sergeyDev537/OnlineShop/assets/28898284/b2f51e79-e321-4ab6-b505-3c0dbd293bf4
 
 
